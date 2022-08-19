@@ -1,0 +1,92 @@
+January 11,2022:
+  ==============
+Disk management:
+================
+Your operating system,applications, and data all need to be kept on some kind of permenent
+storage so that when you turn off your computer and then ON again, your data is intack.
+When you install the operating system, the disk is divided into one or more partions.
+Disks: use for permenent storage
+RAM(RandomAccessMemory): use for temporary storage
+Swap: use for temporary storage
+for example when you run a command, that command is copied from the hard disk into RAM so that
+your computer processor(CPU) can access it quickly.
+Disks commands:
+  $ parted -l /dev/sda use to view partions
+  $ fdisk -l /dev/sda use to format a drive
+  $ lsblk to see the different partions bock
+  $  mount use to munt a drive
+  $ unmount use to unmount a drive
+  /mnt is the default mount directory in linux
+  $ mkdir /mnt/test
+  $ mount /dev/sdb1 /mnt/test
+  $ df -h /mnt/sdb1
+  fstab( File System Table)= use to permenently mount a drive to the file system
+  /dev/sdb1   /mnt/test  xfs  defaults  0 1 is sample fstab entry
+  xfs: is the filesystem
+  defaults: means that the partition should be mounted at boot time
+  number 0: tells the system not to backup files automatically from this filesystem
+  number 1: tells the system to check the partition for errors after a certain number of mounts
+
+  swap: Used for swap partitions.swap areas are used to hold data temporarily when RAM is used up.
+        Data swapped to the swap area and then returned to RAM when it is needed again
+  nfs: Network filesystem
+  xfs: A high-performance filesystem originally developed by silicon graphics that works extremely well
+       with large file.
+
+  $ mkfs -t xfs /dev/sdc1  mkfs(make file system) is use to create a file system
+  cat /etc/inittab
+  File management: see previous video on handling files
+  ===========================================================================
+  chown is use to change ownership of a file or directory
+  Process management: to be done together in class
+  top = to check running processes
+  ps -ef
+  kill 1362
+  kill -9 1362
+  what is Daemon? it is background process in linux that ensures that other services are running and active
+  list some deamons? answer: sshd, sssd, firewalld, cron, systemd, httpd etc..
+  Network management: Which file is use to control ssh access into a linux system?
+                      answer: sshd_config file
+                      How do you check the content of your linux system NIC ?
+                      answer: cat /etc/sysconfig/network-scripts/eth0 (can be different for rhel or ubuntu)
+    QUESTION: How do you troubleshoot a hostdown alerts?
+            Answer: 1. ping the hostname and if your ping is negative then, the server is down
+
+  Service Management: to be done together in class
+  systemctl status <servicedaemon>
+  curl <url> command is use to check url availability
+
+  ls -lth to display files from biggest to smallest
+  ls -lrth  to display files from smallest to biggest
+  =======================================================================
+  Steps to mount an ebs volume to an EC2 instance:
+    1 create the ebs volume in aws 
+    2 attach the ebs volume to the EC2 instance in same AZ(Availability zone)
+    3 run the command "lsblk" to see it. notice 'xvdf' drive added
+    4 sudo file -s /dev/xvdf to confirm it can contain data ':data' thats fine
+    5 sudo partprobe /dev/xvdf -> to partition ready the disk
+    6 sudo mkfs /dev/xvdf -t ext4 -> to format the drive with the ext4 filesystem
+    7 sudo mkdir /mnt/test -> to creat a mountpoint
+    8 sudo mount /dev/xvdf  /mnt/test to mount the new drive onto the system
+    9 df -Th /mnt/test  to see that the drive has been properly mounted
+    10 sudo vi /etc/fstab (This will enable the mounted drive to survive a system reboot)
+        add the following line into the file
+        /dev/xvdf   /mnt/test  ext4  defaults  0 1
+
+         "End of steps"
+=========================================================================================
+   xvda    202:0    0    8G  0 disk
+└─xvda1 202:1    0    8G  0 part /
+fstab = file system table 
+/etc/fstab
+uuid== 52526363734747858589699
+scsi 
+ u   g    o 
+rw- rw-  r-- 
+rwx
+=======================================================================================
+shell scripting and cronjob
+
+drwxr-xr-x  2 root   root   4096 Jan 12 02:45  homework/
+
+cat -n filename | sed -n -e '2575,2580p'

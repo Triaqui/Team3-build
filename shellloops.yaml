@@ -1,0 +1,248 @@
+Nesting Loops:
+Use to control the shell execusion pattern.
+while loop:
+syntax:
+while command1 ; # this is loop1, the outer loop
+do
+   Statement(s) to be executed if command1 is true
+
+   while command2 ; # this is loop2, the inner loop
+   do
+      Statement(s) to be executed if command2 is true
+   done
+
+   Statement(s) to be executed if command1 is true
+done
+example:
+#!/bin/sh
+a=0
+while [ "$a" -lt 10 ]    # this is loop1 
+do
+   b="$a"
+   while [ "$b" -ge 0 ]  # this is loop2
+   do
+      echo -n "$b "
+      b=`expr $b - 1`
+   done
+   echo
+   a=`expr $a + 1`
+done
+ex2:
+#!/bin/sh
+
+a=10
+
+until [ $a -lt 10 ]
+do
+   echo $a
+   a=`expr $a + 1`
+done
+
+Break loop:
+example:
+#!/bin/sh
+
+a=0    
+
+while [ $a -lt 10 ]
+do
+   echo $a
+   if [ $a -eq 5 ]
+   then
+      break
+   fi
+   a=`expr $a + 1`
+done
+
+for loop:
+example;
+#!/bin/sh
+continue statement:
+#!/bin/sh
+NUMS="1 2 3 4 5 6 7"
+
+for NUM in $NUMS
+do
+   Q=`expr $NUM % 2`
+   if [ $Q -eq 0 ]
+   then
+      echo "Number is an even number!!"
+      continue
+   fi
+   echo "Found odd number"
+done
+Creating Functions:
+To declare a function, simply use the following syntax −
+
+function_name () { 
+   list of commands
+}
+example:
+#!/bin/bash
+
+# Define your function here
+Hello () {
+   echo "Hello World"
+}
+
+# Invoke your function
+Hello
+
+Pass Parameters to a Function:
+You can define a function that will accept parameters while calling the function.\ 
+These parameters would be represented by $1, $2 and so on.
+example:
+#!/bin/bash
+
+# Define your function here
+Hello () {
+   echo "Hello World $1 $2"
+}
+
+# Invoke your function
+Hello Zara Ali
+
+Returning Values from Functions:
+
+notes:
+If you execute an exit command from inside a function, its effect is not only to terminate execution of the function but also of the shell program that called the function.
+
+If you instead want to just terminate execution of the function, then there is way to come out of a defined function.
+
+Based on the situation you can return any value from your function using the return command whose syntax is as follows −
+
+return code
+
+example:
+#!/bin/sh
+
+# Define your function here
+Hello () {
+   echo "Hello World $1 $2"
+   return 10
+}
+
+# Invoke your function
+Hello Zara Ali
+
+# Capture value returnd by last command
+ret=$?
+
+echo "Return value is $ret"
+
+Nested Functions:
+One of the more interesting features of functions is that they can call themselves and also other functions. A function that calls itself is known as a recursive function.
+
+Following example demonstrates nesting of two functions −
+
+example;
+
+#!/bin/sh
+
+# Calling one function from another
+number_one () {
+   echo "This is the first function speaking..."
+   number_two
+}
+
+number_two () {
+   echo "This is now the second function speaking..."
+}
+
+# Calling function one.
+number_one
+================================================================================
+system Performance analysis:
+
+Sr.No.	Component & Description
+1	
+User State CPU
+
+The actual amount of time the CPU spends running the users’ program in the user state.
+It includes the time spent executing library calls, but does not include the time spent 
+in the kernel on its behalf
+
+2	
+System State CPU
+
+This is the amount of time the CPU spends in the system state on behalf of this program. 
+ I/O routines require kernel services. The programmer can affect this value by 
+ blocking I/O transfers
+
+3	
+I/O Time and Network Time
+
+This is the amount of time spent moving data and servicing I/O requests
+
+4	
+Virtual Memory Performance
+
+This includes context switching and swapping
+
+5	
+Application Program
+
+Time spent running other programs - when the system is not servicing this application\
+because another application currently has the CPU
+netsat = for network statistics
+vmstat = veirtual memory statistics
+man command to get manual of a command to help you
+x=0
+while x < 10
+          0    1    2     3    4     5   6
+names=( peter,paul,mary,sara,dilan,Emma,Ayo)
+for name in names
+do
+	echo $name
+	pipeline{
+		stages{
+			stage('1.git clone'){
+				steps{
+					git clone url
+				}
+			}
+		}
+	}
+
+	#!/bin/bash
+	test (){
+		echo $USER
+		sub_test(){
+			echo "try"
+		}
+		sub_test
+	}
+	 print (){
+	 	echo "thank you"
+	 }
+	 sand (){
+	 	ech "we are okay"
+	 }
+
+	 test
+	 print  echo $?
+	 sand
+	 
+
+	 checking.sh
+	 connection.sh
+	 #!/bin/bash
+
+	 source checking.sh  126
+	 status="$?"
+	 if [ $status -eq 0]; then
+	 	echo "checking.sh ran successfully"
+	 else
+	 	echo "script failled!!!!"
+	 fi
+
+	 to unmount an ebs volume:
+	 1. sudo umount /dev/xvdf  /mnt/test to unmount the new drive from the system
+      2. Go to your aws console and detach the ebs volume from the instance
+      3. delete the volume from your aws console
+
+      tar -cvf backup.tar /mnt/test 
+      cp backup.tar /tmp
+      NB: Any data store in the /tmp directory that is 10days old will be deleted if your server reboot
+          Any data store in /var/tmp directory that is 30 days old will be deleted if your server reboots
+          

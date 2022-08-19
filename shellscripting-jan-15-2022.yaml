@@ -1,0 +1,156 @@
+january 16,2022:
+================
+#!/bin/sh
+a=10
+b=20
+
+if [ $a -eq $b ]  # 0 1
+then
+   echo "a is equal to b"
+else
+   echo "a is not equal to b"
+fi
+
+
+if [ $a -eq $b ]; then
+   echo "a is equal to b"
+else
+   echo "a is not equal to b"
+fi
+#!/bin/bash
+echo -n "Please enter the first number: "
+read num1
+echo -n "Please enter the second number: "
+read num2
+if [ $num1 -eq $num2 ]; then
+	echo "The numbers you entered are equal"
+else
+	echo "The numbers you entered are not equal"
+fi
+
+#!/bin/bash
+pin=2022
+echo "Please enter your pin number: "
+read -s pinnumber
+if [ $pinnumber -eq $pin ]; then
+	echo "Welcome to bank of America"
+else
+	echo "Sorry incorrect pin: please try again!!"
+fi
+#script to analysed special variables
+#!/bin/sh
+
+echo "File Name: $0"
+echo "First Parameter : $1"
+echo "Second Parameter : $2"
+echo "Quoted Values: $@"
+echo "Quoted Values: $*"
+echo "Total Number of Parameters : $#"
+
+output:
+$./test.sh Zara Ali
+File Name : ./test.sh
+First Parameter : Zara
+Second Parameter : Ali
+Quoted Values: Zara Ali
+Quoted Values: Zara Ali
+Total Number of Parameters : 2uykuyk
+#!/bin/bash
+#Author:Engr Elvis
+#Company: Etech Consulting llc
+#Script will be use to test if sonarqube weblink is up and running and take actions
+if curl -s http://http://etechdemo.eastus.cloudapp.azure.com:9000/projects; then
+  echo "sonarqube is up and running"
+  exit 0
+else
+  echo "sonarqube is down"
+  exit 1
+  echo "The exit status was captured to be `echo $?`"
+  #api call connection to azure function to trigger email notifications
+fi
+
+
+ #this script will be used to check if a user exist in a linux server and
+#Also check if the user directory is present or not
+#Before we test this script let's make sure we have already created the script
+#To add user
+
+#!/bin/bash
+
+echo -n " Please enter the username to be checked: "
+read username
+echo " Search Engine Activated!!..searching.. "
+
+if grep $username /etc/passwd; then
+echo " The user account for $username exist in the system.. "
+echo " The user $username is part of Etech ConsultingDevopsBooster course "
+elif ls -d /home/$username/; then
+echo " The directory for $username exist in the system "
+echo " Even though the $username acount does not exist "
+else
+echo " The user directory does not exist in the system "
+echo " The user account for $username does not exist "
+fi
+
+#This script will be used to test if a certain file has all read write and excute permissions
+#Then assign the permission to the file
+#!/bin/bash
+echo -n " Please enter the filename to check it permissions: "
+read filename
+if [ -f $filename ]&&[ -r $filename ]&&[ -w $filename ]&&[ -x $filename ]; then
+echo " The file exist and it has all the permissions required "
+ls -l $(pwd) | grep $filename
+else
+ echo " The file lacks some permission so,we are going to add those permissions as follows "
+ echo " see the permissions before we use the script to change it for your clarity!! "
+ls -l $(pwd) | grep $filename
+ echo " Changing permissions starting.... "
+ chmod ugo=rwx $filename
+echo " see details below"
+ls -l $(pwd) | grep $filename
+fi
+#switch case
+CARS="$1"
+CARS1= "$2"
+  
+#Pass the variable in string
+case "$CARS" in
+    #case 1
+    "mercedes") echo "Headquarters - Affalterbach, Germany" ;;
+      
+    #case 2
+    "audi") echo "Headquarters - Ingolstadt, Germany" ;;
+      
+    #case 3
+    "bmw") echo "Headquarters - Chennai, Tamil Nadu, India" ;;
+esac
+==========================================================================
+build a tomcat container to access via browser
+
+docker image pull tomcat:8.0
+docker image ls # it will list all images in your docker
+docker container create --publish 8082:8080 --name my-tomcat-container tomcat:8.0
+docker container ls -a # it will list all the containers
+docker container start my-tomcat-container
+
+etechdemo.eastus.cloudapp.azure.com:8082
+
+/home/ubuntu/logincheck.sh >> /tmp/monitor.log
+         0         1    2    3    4
+sh scriptname.sh arg1 arg2 arg3 agr4
+
+arg1=$1
+arg2=$2
+arg3=$3
+arg4=$4
+if [ $arg1 -eq '$1']
+
+	http://etechdemo.eastus.cloudapp.azure.com:8082/
+read -s -p "Password: " password
+code :200
+
+sh tester.sh& = To run a script in background mode you simply add the symbol & at the end \
+of your command
+nohup sh scriptname.sh = to run a script in an unstable network environment
+       0          1
+sh carscheck.sh bmw

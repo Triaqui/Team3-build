@@ -1,0 +1,10 @@
+ ( WELCOME TO Etech Consulting)(print your name at the end of each script using the script)
+1. Write a script to create a file that will indicate who created the file and
+the date the file was created by any user
+2.Write a script to perform mathetical calculations that ascept both integer and fractional
+input and display the result of SUM,DIFFERENCE,MULTIPLICATION,DIVISION,MODULO
+3.Write a script to check the existence of any user in the system and display the message if the user
+exist or not(print your name at the end of the script)
+4.write a script to check the existence of any user account and also check if the directory of the user exist or NOT
+
+hINT:CREATE A SINGLE DIRECTORY TO USE FOR YOUR PRACTICE

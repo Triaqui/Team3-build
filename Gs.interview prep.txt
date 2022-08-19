@@ -1,0 +1,20 @@
+1. How do you check for disk free space
+2.How do you check for disk usage
+3.How can you run a script in background mode
+4.How can you run a script during network instability
+5. Do you know any awhawk commands?
+6. Have you use any FTP protocol before?
+7. What are the 3 pieces of information you need to ssh into a remote linux host
+8. how can check the number of lines in a file
+9. how can you check the number of words in a file
+10.how can you compare the content of two files
+11. how do you troubleshoot an application running slow
+12.what is your experience with incident management
+13.how do you access a databse from your command terminal and what are the informations needed
+14.How do you show the list of database present?
+15.How do you select a database table
+16.which file do you check if a user is not able to ssh into a remote linux host
+17.Do you have selinux experience?
+18. What command can you use to change the permission of a file
+19.how can i display the last 100 lines of a file
+20. how do you check the presence of a word in a file?

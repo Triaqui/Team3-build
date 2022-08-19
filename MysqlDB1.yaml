@@ -1,0 +1,207 @@
+January 22,2022:
+  =============
+  Mysql Database:
+    =============
+    Introductions:
+      MySQL is an open-source database management software that helps users store, 
+      organize, and later retrieve data. 
+    Mysql server installations:
+    ===========================
+    #!/bin/bash
+#Author: Etech Consulting staff
+echo "welcome to mysql database installation wizard!!"
+sudo apt update -y
+sudo apt install mysql-server
+sudo mysql_secure_installation
+sudo mysql
+    sudo apt-get install mysql-server -y (to install the mysql server application)
+    sudo mysql_secure_installation
+    steps to reset the root account password:
+    =======================================
+    1 mysql --version
+    2 sudo systemctl stop mysql.service
+    3 sudo systemctl status mysql.service
+    4 sudo systemctl set-environment MYSQLD_OPTS="--skip-networking --skip-grant-tables"
+    5 sudo systemctl start mysql.service
+    6 sudo systemctl status mysql.service
+    7 sudo mysql -u root
+    8 flush privileges;
+    9 USE mysql;
+    10 ALTER USER  'root'@'localhost' IDENTIFIED BY 'the-new-password';
+    11  quit; or exit <enter>
+    12 sudo killall -u mysql
+    13  sudo systemctl restart mysql.service
+    14 sudo mysql -u root -p (to connect to your mysql database server by mysql binary method)
+
+    How to Create a New User:
+    =========================
+    step 1: CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+    NB: Just by creating the new user they do not have permissions to access the Database
+    
+    step 2: GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
+    NB: First * means all databases and the second * means all tables
+     
+    step 3: FLUSH PRIVILEGES;
+    NB: you can also use ctrl + l to clear your mysql shell terminal
+        or system clear;
+    
+    How To Grant Different User Permissions:
+    ========================================
+ALL PRIVILEGES: as we saw previously, this would allow a MySQL user full access to \
+a designated database (or if no database is selected, global access across the system)
+CREATE: allows them to create new tables or databases
+DROP: allows them to them to delete tables or databases
+DELETE: allows them to delete rows from tables
+INSERT: allows them to insert rows into tables
+SELECT: allows them to use the SELECT command to read through databases
+UPDATE: allow them to update table rows
+GRANT OPTION: allows them to grant or remove other users’ privileges
+
+To provide a specific user with a permission, you can use this framework:
+  GRANT (type_of_permission) ON (database_name.table_name) TO 'username'@'localhost';
+  NB: each time you alter a permission, be sure to run the command (flush privileges;)
+If you need to revoke a permission, the structure is almost identical to granting it:
+  REVOKE (type_of_permission) ON (database_name.table_name) FROM 'username'@'localhost';
+You can review a user’s current permissions by running the following:
+  SHOW GRANTS FOR 'username'@'localhost';
+Just as you can delete databases with DROP, you can use DROP to delete a user altogether:
+  DROP USER 'username'@'localhost';
+To test out your new user, log out by typing:
+  quit;
+  and log back in with this command in terminal:
+    mysql -u [username] -p
+
+How To Create and Manage Databases in MySQL and MariaDB on a Cloud Server:
+  steps:
+    To begin, sign into MySQL or MariaDB with the following command
+    mysql -u root -p (then enter the user password)
+
+We can now create a database by typing the following command:
+    CREATE DATABASE new_database; <enter>
+    To avoid errors in the event that the database name we've chosen already exists \ 
+    use the following command:
+    CREATE DATABASE IF NOT EXISTS new_database;
+How to View Databases in MySQL and MariaDB:
+  commands:
+    SHOW DATABASES;
+How to Change Databases in MySQL and MariaDB:
+  commands:
+    SELECT database();
+To select a database to use for subsequent operations, use the following command:
+    USE new_database;
+We can see that the database has been selected by re-issuing the command we ran previously:
+    SELECT database();
+
+How to Delete a Database in MySQL and MariaDB:
+   command:
+    DROP DATABASE new_database;
+    DROP DATABASE IF EXISTS new_database; (to avoid errors)
+
+    DATA TYPE:
+      - CHAR(size) --> A FIXED length string (can contain letters, numbers, and special characters)
+      - VARCHAR(size) --> A VARIABLE length string  can vary from 0 to 65535 
+      - BINARY(size) -->  Equal to CHAR(), but stores binary byte strings. The size parameter specifies the column length in bytes. Default is 1
+      - TEXT(size)-> Holds a string with a maximum length of 65,535 bytes
+      - BOOL -> Zero is considered as false, nonzero values are considered as true
+      - INT(size) --> A medium integer. Signed range is from -2147483648 to 2147483647
+      - FLOAT(p)--> A floating point number. The total number of digits is specified in size
+      - DATE --> A date. Format YYYY-MM-DD
+      - DATETIME(fsp)->A date and time combination. Format YYYY-MM-DD hh:mm:ss.
+      - TIME(fsp)--> A time. Format hh:mm:ss.
+      - YEAR -->  A year in four-digit format. Values allowed in four-digit format 1901 to 2155, and 0000.
+                  MySQL 8.0 does not support year in two-digit format.
+
+The MySQL CREATE TABLE Statement:
+  syntax:
+    CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+   ....
+);
+example:
+CREATE TABLE Persons (
+    PersonID int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+);
+
+DROP TABLE table_name; --> use to delete a table
+
+MySQL ALTER TABLE Statement:
+  syntax:
+    ALTER TABLE table_name
+ADD column_name datatype;
+
+example:
+  ALTER TABLE Persons
+ADD Email varchar(255);
+ 
+ ALTER TABLE table_name
+DROP COLUMN column_name;
+
+MySQL PRIMARY KEY Constraint:
+  defination of primary key --> The PRIMARY KEY constraint uniquely identifies each record in a table.
+
+  syntax: 
+  CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (ID)
+);
+
+Constraint:
+  CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
+);
+ALTER TABLE Persons
+DROP PRIMARY KEY;
+TRUNCATE TABLE table_name;
+
+SHOW COLUMNS FROM table_name
+INSERT INTO Persons (FirstName,LastName) VALUES ('Lars','Monsen');
+insert into Etechemployee (id,name,position,contact) values ('2023','Elvis','Technical Director','347-873-5512');
+DELETE FROM (TABLE) WHERE ID=X;
+alter table Etechemployee MODIFY WHERE Age=25;
+SELECT * FROM table_name; --> to see the content of the table
+UPDATE Etechemployee SET Email = 'engineer@etcehconsultllc.com' WHERE employeeNumber = 1056; -->
+use to update information from the table for a particular entry
+
+SELECT firstname, lastname, email FROM employees WHERE employeeNumber = 1056;--> use to select
+a specific entry from the table
+
+Splunk installations:
+=====================
+splunk is a monitoring tool for applications performance tracking
+script to install splunk:
+
+  #!/bin/bash
+  #Author: Elvis N.
+  echo "welcome to Etech Consulting"
+  sudo wget https://download.splunk.com/products/splunk/releases/7.1.1/linux/splunk-7.1.1-8f0ead9ec3db-linux-2.6-amd64.deb
+  sudo dpkg -i splunk-7.1.1-8f0ead9ec3db-linux-2.6-amd64.deb
+  sudo /opt/splunk/bin/splunk enable boot-start
+  sudo systemctl start spunk
+  sudo systemctl status spunk
+
+  How to access splunk from webbrowser:
+    http://pub_ip-address:8000
+
+    $90k - $125k- $140k
+
+    Runbooks
+    ticketting systems apphero,jira,serviceNow   80% linux and database(mysql)
+    keepalive
+    pagerduty
+    prometheus, kafka,kibana,grafana
+
+
+

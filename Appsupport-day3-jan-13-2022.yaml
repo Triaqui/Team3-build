@@ -1,0 +1,122 @@
+January 13,2022:
+================
+Linux Admin:
+  =========
+  commands:
+    date
+    Q: how do you modify the date and time of the server?
+    ans: date mmddHHMMyy
+    date +%r 
+    date +%m/%d/%y
+    date +%m/%d/%y:%H:%M:%S
+    cal <month> <year>
+    mv 
+    source
+    cp
+    scp (demo) use to copy file over ssh
+    scp -r  use to copy directory over ssh
+    hostnamectl set-hostname <new-hostname>
+    id <username>
+    user management:
+      useradd
+      usermod
+      userdel
+      groupadd
+      groupmod -n 
+      groupdel
+      which use to check if a command exist
+      Q: how do you modify a user profile?
+       Ans: vi .profile
+      Q: how do you modify the profile of system users?
+      ip a
+      sh
+      system log files:
+        /var/log/messages
+        /var/log/boot.log
+        /var/log/dmesg
+        /var/log/kern.log
+        /var/log/secure
+    Q: How do you configure a custom service in linux?
+    Q: Which directory will you use? ans: /etc/systemd/system
+    watch = use to monitor events in a given directory
+    example watch ls
+    Package management:
+    rpm( redhat package manager)
+    rpm -qa (query all install packages)
+    rpm -qip(query info of package)
+    rpm -qlp( list content of package)
+    rpm -Uvh(to install a package)
+    yum (package manager for redhat)
+    apt or apt-get (ubuntu)
+
+    Variables:
+      -system Variables
+      Q: what is a variable? A variable is a replaceable entity containing a value
+      Q: what is a system variable? These are variables defined by the system
+      example USER, PATH,HOSTNAME,HOME etc
+      -custom Variables
+      Q: what is a custom variable? these are variables defined by an admin or any user
+      example y=Ayo in this case 'y' is a custom variable
+      -special variable
+      Q: what is a special variable? These are variables defined by the system for shell functionalities
+      example $?
+      Q: How do you display the value of a variable?
+      ans: echo $variablename
+      backtick ` ` helps you to run a command within a statement
+      0           1         2         3 
+   monitor.sh argument2
+   argument1{hgh} 
+   argument2 {hkj}
+   argument3  echo ${10}
+
+    Command line argument:
+     ** echo $0 = script name
+     ** echo $? = the status of last run command
+     ** echo $@ = number of arguments to scripts
+      echo $$ = process id
+      echo $1 = first argument
+      echo $* = number of arguments to script
+
+find $(pwd) -mtime -2 -delete
+find /opt/backup -type f -mtime +30 -delete 
+find /var/log -name "*.log" -type f -mtime +30 
+find /var/log -name "*.log" -type f -mtime +30 -delete 
+find /var/log -type d -mtime +90 
+
+
+ll $(sudo find $(pwd) -mtime +30):Use to display files and directories that are 30 days old and their permissions
+ll $(sudo find $(pwd) -type f -mtime +30): use to display only files and their permissions
+ll $(sudo find $(pwd) -type d -mtime +30): use to display directories ONLY with their permissions
+ll $(sudo find $(pwd) -name "*.sh" -type f -mtime +30): use to filter files with the .sh extension only and their permissions
+
+sort >> use to arrange file content from A-Z
+sort -r >> use to arrange file content from Z-A 
+tar -cvf backup.tar /home/devsecops
+
+To see the content of a directory we "ls"
+to see the content of a file we "cat"
+=========================================================
+ll $(sudo find $(pwd) -mtime +30):Use to display files and directories that are 30 days old and their permissions
+
+ Tools:
+  -notepad
+  -vscode
+  -sublime text
+  -microsoft outlook
+  -Google docs
+  -putty
+  -mobaxterm
+  -Gitbash
+  -sticky note
+
+today= `date`
+filename.$today
+A-Z = 26
+
+scp -i 'key' <filename> ubuntu@hostname:/tmp/homework1
+scp <filename> ubuntu@hostname:/tmp/homework1  <enter>
+scp -r -i 'key' <filename> ubuntu@hostname:/tmp/homework1
+scp -r <filename> ubuntu@hostname:/tmp/homework1  <enter>
+password: jhgjhghh <enter>
+
+/etc/ssh/sshd_config
